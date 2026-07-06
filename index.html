@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Достоверно — верификация кандидатов перед оффером</title>
+<meta name="description" content="Подтверждаем, что кандидат реальный, не подставной и не дипфейк, а его опыт — настоящий. Отчёт и бейдж «Проверен» за 24 часа. Первая проверка бесплатно.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"></noscript>
+<style>
+:root{
+  --bg:#070b16;
+  --bg-2:#0b1120;
+  --panel:#0f1729;
+  --panel-2:#131d33;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.14);
+  --text:#eef2ff;
+  --muted:#9aa8c7;
+  --muted-2:#6b789a;
+  --cyan:#3fe0d0;
+  --blue:#4f8bff;
+  --violet:#8b7bff;
+  --green:#37e59a;
+  --red:#ff6b6b;
+  --amber:#ffcb6b;
+  --grad:linear-gradient(120deg,var(--cyan),var(--blue) 55%,var(--violet));
+  --radius:18px;
+  --maxw:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3,.display{font-family:'Manrope','Inter',sans-serif;letter-spacing:-.02em;line-height:1.08}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);
+  padding:7px 14px;border:1px solid var(--line-2);border-radius:100px;
+  background:rgba(63,224,208,.06);
+}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:15px;
+  padding:14px 24px;border-radius:12px;cursor:pointer;border:1px solid transparent;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;white-space:nowrap;
+}
+.btn-primary{background:var(--grad);color:#05122a;box-shadow:0 10px 30px -8px rgba(79,139,255,.5)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -8px rgba(79,139,255,.65)}
+.btn-ghost{background:rgba(255,255,255,.04);border-color:var(--line-2);color:var(--text)}
+.btn-ghost:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+
+/* NAV */
+header{position:sticky;top:0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(7,11,22,.8);backdrop-filter:blur(14px);border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:11px;font-family:'Manrope';font-weight:800;font-size:19px}
+.logo-mark{width:32px;height:32px;border-radius:9px;background:var(--grad);display:grid;place-items:center;box-shadow:0 6px 18px -4px rgba(79,139,255,.6)}
+.logo-mark svg{width:18px;height:18px}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:14.5px;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:flex;gap:12px;align-items:center}
+.burger{display:none;background:none;border:1px solid var(--line-2);border-radius:9px;padding:9px;cursor:pointer}
+.burger span{display:block;width:20px;height:2px;background:var(--text);margin:4px 0;border-radius:2px}
+
+/* HERO */
+.hero{position:relative;padding:74px 0 90px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
+.orb-1{width:520px;height:520px;background:radial-gradient(circle,#1c3d7a,transparent 70%);top:-160px;right:-120px}
+.orb-2{width:460px;height:460px;background:radial-gradient(circle,#2f6b64,transparent 70%);bottom:-200px;left:-140px;opacity:.35}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000,transparent 75%);opacity:.5}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(38px,5vw,60px);font-weight:800;margin:22px 0 20px}
+.hero p.lead{font-size:19px;color:var(--muted);max-width:540px;margin-bottom:32px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+.hero-trust{display:flex;gap:26px;flex-wrap:wrap}
+.hero-trust .t{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--muted)}
+.hero-trust .t svg{width:18px;height:18px;color:var(--green);flex-shrink:0}
+
+/* VERIFY CARD */
+.vcard{
+  position:relative;background:linear-gradient(160deg,var(--panel),var(--bg-2));
+  border:1px solid var(--line-2);border-radius:22px;padding:26px;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.7);
+}
+.vcard::before{content:"";position:absolute;inset:0;border-radius:22px;padding:1px;background:var(--grad);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.4;pointer-events:none}
+.vcard-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.vcard-id{font-size:12.5px;color:var(--muted-2);font-family:'Inter'}
+.vbadge{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:13px;color:var(--green);padding:6px 12px;border-radius:100px;background:rgba(55,229,154,.1);border:1px solid rgba(55,229,154,.3)}
+.vbadge svg{width:15px;height:15px}
+.vperson{display:flex;align-items:center;gap:15px;margin-bottom:22px}
+.avatar{width:60px;height:60px;border-radius:14px;background:linear-gradient(135deg,#2a3a5c,#16203a);display:grid;place-items:center;font-family:'Manrope';font-weight:700;font-size:22px;color:var(--cyan);border:1px solid var(--line-2)}
+.vperson .n{font-family:'Manrope';font-weight:700;font-size:18px}
+.vperson .r{font-size:13.5px;color:var(--muted)}
+.vcheck-list{display:flex;flex-direction:column;gap:11px}
+.vcheck{display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px}
+.vcheck .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex-shrink:0}
+.vcheck .ic.ok{background:rgba(55,229,154,.14);color:var(--green)}
+.vcheck .ic.warn{background:rgba(255,203,107,.14);color:var(--amber)}
+.vcheck .ic svg{width:15px;height:15px}
+.vcheck .lbl{font-size:14px;flex:1}
+.vcheck .val{font-size:13px;font-weight:600;color:var(--muted)}
+.vcheck .val.ok{color:var(--green)}
+.vcheck .val.warn{color:var(--amber)}
+.vscan{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);top:0;opacity:.8;animation:scan 3.4s ease-in-out infinite;border-radius:2px}
+@keyframes scan{0%,100%{top:8%;opacity:0}10%{opacity:.9}50%{top:92%;opacity:.9}60%{opacity:0}}
+
+/* STATS BAND */
+.band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-2)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:44px 0}
+.stat{text-align:center}
+.stat .num{font-family:'Manrope';font-weight:800;font-size:clamp(30px,3.4vw,42px);line-height:1}
+.stat .lbl{font-size:13.5px;color:var(--muted);margin-top:8px}
+
+/* SECTIONS */
+section.pad{padding:96px 0}
+.sec-head{max-width:660px;margin:0 auto 56px;text-align:center}
+.sec-head h2{font-size:clamp(30px,3.6vw,44px);font-weight:800;margin:18px 0 16px}
+.sec-head p{font-size:17.5px;color:var(--muted)}
+
+/* PROBLEM */
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.prob{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .3s,border-color .3s}
+.prob:hover{transform:translateY(-4px);border-color:var(--line-2)}
+.prob .pi{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(255,107,107,.1);color:var(--red);margin-bottom:18px}
+.prob .pi svg{width:23px;height:23px}
+.prob h3{font-size:19px;font-weight:700;margin-bottom:9px}
+.prob p{font-size:15px;color:var(--muted)}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative}
+.step{background:linear-gradient(165deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;position:relative}
+.step-n{font-family:'Manrope';font-weight:800;font-size:15px;color:#05122a;width:36px;height:36px;border-radius:10px;background:var(--grad);display:grid;place-items:center;margin-bottom:20px}
+.step h3{font-size:20px;font-weight:700;margin-bottom:10px}
+.step p{font-size:15px;color:var(--muted)}
+.step .meta{margin-top:16px;font-size:13px;color:var(--cyan);font-weight:600;display:flex;align-items:center;gap:7px}
+.step .meta svg{width:15px;height:15px}
+
+/* REPORT split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.split ul{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:16px}
+.split li{display:flex;gap:14px;align-items:flex-start}
+.split li .ci{width:26px;height:26px;border-radius:8px;background:rgba(63,224,208,.12);color:var(--cyan);display:grid;place-items:center;flex-shrink:0;margin-top:2px}
+.split li .ci svg{width:15px;height:15px}
+.split li b{font-weight:600;display:block;font-size:15.5px}
+.split li span{font-size:14px;color:var(--muted)}
+.report-visual{background:var(--panel);border:1px solid var(--line-2);border-radius:20px;padding:30px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.rv-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.rv-title{font-family:'Manrope';font-weight:700;font-size:17px}
+.rv-score{text-align:center;padding:22px;background:rgba(55,229,154,.06);border:1px solid rgba(55,229,154,.2);border-radius:14px;margin-bottom:18px}
+.rv-score .big{font-family:'Manrope';font-weight:800;font-size:44px;color:var(--green);line-height:1}
+.rv-score .sm{font-size:13px;color:var(--muted);margin-top:6px}
+.rv-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;font-size:14px;border-bottom:1px solid var(--line)}
+.rv-row:last-child{border:none}
+.rv-row .k{color:var(--muted)}
+.rv-tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:100px}
+.rv-tag.ok{background:rgba(55,229,154,.12);color:var(--green)}
+.rv-tag.warn{background:rgba(255,203,107,.12);color:var(--amber)}
+
+/* SEGMENTS */
+.segs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.seg{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .3s,border-color .3s}
+.seg:hover{transform:translateY(-4px);border-color:var(--cyan)}
+.seg .si{font-size:26px;margin-bottom:14px}
+.seg h3{font-size:18.5px;font-weight:700;margin-bottom:9px}
+.seg p{font-size:14.5px;color:var(--muted)}
+
+/* PRICING */
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.price{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;position:relative}
+.price.pop{border-color:transparent;background:linear-gradient(170deg,var(--panel-2),var(--bg-2))}
+.price.pop::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1px;background:var(--grad);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.price .tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--grad);color:#05122a;font-size:12px;font-weight:700;padding:5px 14px;border-radius:100px}
+.price h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.price .desc{font-size:13.5px;color:var(--muted);margin-bottom:20px;min-height:40px}
+.price .amt{font-family:'Manrope';font-weight:800;font-size:38px;line-height:1}
+.price .per{font-size:14px;color:var(--muted);font-weight:500}
+.price ul{list-style:none;margin:22px 0 26px;display:flex;flex-direction:column;gap:11px;flex:1}
+.price li{display:flex;gap:10px;font-size:14px;color:var(--muted);align-items:flex-start}
+.price li svg{width:17px;height:17px;color:var(--green);flex-shrink:0;margin-top:3px}
+.price .btn{width:100%;justify-content:center}
+
+/* TRUST / LEGAL */
+.trust-wrap{background:linear-gradient(160deg,var(--panel),var(--bg-2));border:1px solid var(--line-2);border-radius:24px;padding:52px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.trust-list{display:flex;flex-direction:column;gap:20px}
+.trust-item{display:flex;gap:16px}
+.trust-item .ti{width:44px;height:44px;border-radius:12px;background:rgba(63,224,208,.1);color:var(--cyan);display:grid;place-items:center;flex-shrink:0}
+.trust-item .ti svg{width:22px;height:22px}
+.trust-item h4{font-size:16.5px;font-weight:700;margin-bottom:5px}
+.trust-item p{font-size:14px;color:var(--muted)}
+
+/* FAQ */
+.faq{max-width:800px;margin:0 auto}
+.qa{border:1px solid var(--line);border-radius:14px;margin-bottom:14px;background:var(--panel);overflow:hidden}
+.qa summary{cursor:pointer;padding:22px 26px;font-family:'Manrope';font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .plus{width:24px;height:24px;flex-shrink:0;position:relative;transition:transform .3s}
+.qa summary .plus::before,.qa summary .plus::after{content:"";position:absolute;background:var(--cyan);border-radius:2px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.qa summary .plus::before{width:14px;height:2px}
+.qa summary .plus::after{width:2px;height:14px;transition:opacity .3s}
+.qa[open] summary .plus::after{opacity:0}
+.qa .a{padding:0 26px 22px;font-size:15px;color:var(--muted)}
+
+/* CTA */
+.cta{position:relative;overflow:hidden;border-radius:26px;background:linear-gradient(130deg,#0d2350,#10203f 60%,#1a1840);border:1px solid var(--line-2);padding:64px 48px;text-align:center}
+.cta .orb-3{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(63,224,208,.25),transparent 70%);top:-250px;left:50%;transform:translateX(-50%);filter:blur(40px)}
+.cta h2{font-size:clamp(28px,3.6vw,42px);font-weight:800;position:relative;margin-bottom:16px}
+.cta p{font-size:18px;color:var(--muted);position:relative;margin-bottom:30px;max-width:520px;margin-left:auto;margin-right:auto}
+.cta .hero-cta{justify-content:center;position:relative}
+
+/* FOOTER */
+footer{border-top:1px solid var(--line);padding:48px 0 40px;margin-top:96px}
+.foot{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:30px}
+.foot .about{max-width:320px}
+.foot .about p{font-size:14px;color:var(--muted);margin-top:14px}
+.foot-cols{display:flex;gap:60px;flex-wrap:wrap}
+.foot-col h5{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted-2);margin-bottom:14px}
+.foot-col a{display:block;font-size:14.5px;color:var(--muted);margin-bottom:10px;transition:color .2s}
+.foot-col a:hover{color:var(--text)}
+.foot-bottom{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted-2)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hero-visual{order:-1}
+  .stats{grid-template-columns:repeat(2,1fr);gap:32px 20px}
+  .prob-grid,.steps,.segs,.prices{grid-template-columns:1fr}
+  .split,.trust-wrap{grid-template-columns:1fr;gap:36px}
+  .trust-wrap{padding:36px}
+  .nav-links{display:none}
+  .nav .btn-ghost{display:none}
+  .burger{display:block}
+}
+@media(max-width:520px){
+  .stats{grid-template-columns:1fr}
+  .cta{padding:44px 24px}
+  section.pad{padding:70px 0}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 12.5l2 2 4-4.5" stroke="#05122a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 2l8 3v6c0 5-3.4 8.5-8 11-4.6-2.5-8-6-8-11V5l8-3z" stroke="#05122a" stroke-width="1.8" stroke-linejoin="round" opacity=".55"/></svg>
+      </span>
+      Достоверно
+    </a>
+    <nav class="nav-links">
+      <a href="#problem">Проблема</a>
+      <a href="#how">Как работает</a>
+      <a href="#report">Отчёт</a>
+      <a href="#pricing">Цены</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#pricing" class="btn btn-ghost">Войти</a>
+      <a href="#cta" class="btn btn-primary">Проверить кандидата</a>
+      <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="grid-bg"></div>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">● Защита найма от дипфейков и фейковых кандидатов</span>
+      <h1>Убедитесь, что кандидат <span class="grad-text">реальный</span> — до того, как подпишете оффер</h1>
+      <p class="lead">Дипфейк на видеособеседовании, подставное лицо, липовый опыт — новая норма удалённого найма. «Достоверно» подтверждает личность и квалификацию кандидата и выдаёт отчёт с бейджом «Проверен».</p>
+      <div class="hero-cta">
+        <a href="#cta" class="btn btn-primary">Первая проверка — бесплатно
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#05122a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#how" class="btn btn-ghost">Как это работает</a>
+      </div>
+      <div class="hero-trust">
+        <div class="t"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Отчёт за 24 часа</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Биометрию не храним · 152-ФЗ</div>
+        <div class="t"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Без интеграций для старта</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="vcard">
+        <div class="vscan"></div>
+        <div class="vcard-head">
+          <span class="vcard-id">ID · DV-2026-08842</span>
+          <span class="vbadge"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Проверен</span>
+        </div>
+        <div class="vperson">
+          <div class="avatar">АК</div>
+          <div>
+            <div class="n">Кандидат А. К.</div>
+            <div class="r">Senior Backend Developer · удалённо</div>
+          </div>
+        </div>
+        <div class="vcheck-list">
+          <div class="vcheck">
+            <span class="ic ok"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="lbl">Личность подтверждена (live)</span>
+            <span class="val ok">Да</span>
+          </div>
+          <div class="vcheck">
+            <span class="ic ok"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="lbl">Анти-дипфейк проверка</span>
+            <span class="val ok">Пройдена</span>
+          </div>
+          <div class="vcheck">
+            <span class="ic ok"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="lbl">Опыт подтверждён (2 из 2)</span>
+            <span class="val ok">Да</span>
+          </div>
+          <div class="vcheck">
+            <span class="ic warn"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5M12 16.5v.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+            <span class="lbl">Одна рекомендация не отвечает</span>
+            <span class="val warn">Уточнить</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="band">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat reveal"><div class="num grad-text" data-count="300" data-suffix="%">0%</div><div class="lbl">рост дипфейк-собеседований<br>за 2024–2025 (Sensity AI)</div></div>
+      <div class="stat reveal"><div class="num grad-text" data-count="20" data-prefix="$" data-suffix=" млрд">0</div><div class="lbl">потери компаний от фейковых<br>кандидатов в 2025 (HireRight)</div></div>
+      <div class="stat reveal"><div class="num grad-text" data-count="30" data-suffix="%">0%</div><div class="lbl">годовой рост мошенничества<br>при найме</div></div>
+      <div class="stat reveal"><div class="num grad-text" data-count="24" data-suffix="ч">0</div><div class="lbl">срок готового отчёта<br>по кандидату</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="pad" id="problem">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Почему это важно сейчас</span>
+      <h2>Удалённый найм стал каналом для мошенников</h2>
+      <p>То, что раньше было редкостью, в 2026-м — системная угроза. Особенно для компаний, дающих доступ к деньгам, данным и клиентам.</p>
+    </div>
+    <div class="prob-grid">
+      <div class="prob reveal">
+        <div class="pi"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="currentColor" stroke-width="1.8"/><path d="M8 9.5s1-1.5 4-1.5 4 1.5 4 1.5M9 15c1 .8 2 1 3 1s2-.2 3-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Дипфейк на собеседовании</h3>
+        <p>ИИ подменяет лицо и голос в реальном времени. На интервью — один человек, работать выходит другой (или никто).</p>
+      </div>
+      <div class="prob reveal">
+        <div class="pi"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20v-1a5 5 0 015-5h2m5 3l2 2 4-4M9 11a4 4 0 100-8 4 4 0 000 8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Подставное лицо</h3>
+        <p>Собеседование проходит эксперт, а оффер получает совсем другой человек с тем же именем. Классика аутстаффа.</p>
+      </div>
+      <div class="prob reveal">
+        <div class="pi"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4z" stroke="currentColor" stroke-width="1.8"/><path d="M8 9h5M8 13h8M8 17h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Липовый опыт и дипломы</h3>
+        <p>Фейковые места работы, несуществующие проекты, купленные сертификаты. Проверить некогда — найм горит.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="pad" id="how" style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Как это работает</span>
+      <h2>Три шага — и вы знаете, кого нанимаете</h2>
+      <p>Никаких интеграций и внедрений. Вы отправляете заявку — мы делаем остальное и присылаем отчёт.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-n">1</div>
+        <h3>Заявка на проверку</h3>
+        <p>Вы присылаете контакт кандидата. Кандидат даёт согласие на обработку данных — всё по закону.</p>
+        <div class="meta"><svg viewBox="0 0 24 24" fill="none"><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>2 минуты вашего времени</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-n">2</div>
+        <h3>Живая видео-верификация</h3>
+        <p>Короткая сессия: сверка документа в кадре, контрольные вопросы и движения (анти-дипфейк). Плюс прозвон прошлых работодателей.</p>
+        <div class="meta"><svg viewBox="0 0 24 24" fill="none"><path d="M15 10l4.5-2.5v9L15 14M4 6h11v12H4z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Оператор + анти-фрод</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-n">3</div>
+        <h3>Отчёт и бейдж «Проверен»</h3>
+        <p>Получаете PDF-отчёт с итогом и красными флагами. Кандидат — бейдж со сроком действия. Сырое видео удаляем.</p>
+        <div class="meta"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Готово за 24 часа</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPORT -->
+<section class="pad" id="report">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow">Что вы получаете</span>
+      <h2 style="font-size:clamp(28px,3.4vw,40px);font-weight:800;margin:18px 0 8px">Понятный отчёт, а не сырые данные</h2>
+      <p style="color:var(--muted);font-size:17px">Одна страница, по которой HR и нанимающий руководитель за минуту принимают решение. Без юридических рисков и хранения биометрии.</p>
+      <ul>
+        <li><span class="ci"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Итоговый вердикт и уровень доверия</b>Личность, анти-дипфейк, подтверждение опыта — одним баллом.</span></li>
+        <li><span class="ci"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Красные флаги</b>Что именно не сошлось и требует уточнения перед оффером.</span></li>
+        <li><span class="ci"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Бейдж «Проверен» со сроком</b>Кандидат прикладывает к резюме; действует 6 месяцев.</span></li>
+        <li><span class="ci"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Полное соответствие 152-ФЗ</b>Согласие кандидата, хранение только отчёта, никакой биометрии на серверах.</span></li>
+      </ul>
+    </div>
+    <div class="report-visual reveal">
+      <div class="rv-head">
+        <span class="rv-title">Отчёт о проверке</span>
+        <span class="vcard-id">DV-2026-08842</span>
+      </div>
+      <div class="rv-score">
+        <div class="big">92<span style="font-size:22px;color:var(--muted)">/100</span></div>
+        <div class="sm">Высокий уровень доверия · рекомендуется к офферу</div>
+      </div>
+      <div class="rv-row"><span class="k">Личность (документ + live)</span><span class="rv-tag ok">Подтверждена</span></div>
+      <div class="rv-row"><span class="k">Анти-дипфейк</span><span class="rv-tag ok">Пройдена</span></div>
+      <div class="rv-row"><span class="k">Прошлые работодатели</span><span class="rv-tag ok">2 из 2</span></div>
+      <div class="rv-row"><span class="k">Рекомендации</span><span class="rv-tag warn">1 не ответила</span></div>
+      <div class="rv-row"><span class="k">Публичные профили</span><span class="rv-tag ok">Совпадают</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENTS -->
+<section class="pad" id="segments" style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Для кого</span>
+      <h2>Тем, для кого ошибка найма стоит дорого</h2>
+    </div>
+    <div class="segs">
+      <div class="seg reveal"><div class="si">💻</div><h3>IT-аутсорс и аутстафф</h3><p>Гарантируете клиенту, что за экраном — тот самый специалист, которого он выбрал. Защита репутации и контрактов.</p></div>
+      <div class="seg reveal"><div class="si">🏦</div><h3>Финтех и компании с доступом к деньгам</h3><p>Проверяете тех, кто получит доступ к средствам, данным клиентов и внутренним системам.</p></div>
+      <div class="seg reveal"><div class="si">🤝</div><h3>Кадровые агентства</h3><p>Добавляете «галочку доверия» к своим кандидатам и отстраиваетесь от конкурентов. Партнёрская модель.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pad" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Цены</span>
+      <h2>Дешевле одной ошибки найма</h2>
+      <p>Первая проверка — бесплатно, чтобы вы увидели ценность на реальном кандидате.</p>
+    </div>
+    <div class="prices">
+      <div class="price reveal">
+        <h3>Разовая проверка</h3>
+        <div class="desc">Когда нужно проверить одного важного кандидата.</div>
+        <div><span class="amt">3 900</span> <span class="per">₽ / проверка</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Верификация личности + анти-дипфейк</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Прозвон 1–2 работодателей</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>PDF-отчёт за 24 часа</li>
+        </ul>
+        <a href="#cta" class="btn btn-ghost">Заказать проверку</a>
+      </div>
+      <div class="price pop reveal">
+        <span class="tag">Популярно</span>
+        <h3>Пакет «10 проверок»</h3>
+        <div class="desc">Для команд в активной фазе найма.</div>
+        <div><span class="amt">29 000</span> <span class="per">₽ · 2 900 ₽/шт</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Всё из разовой проверки</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Приоритетная очередь</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Личный менеджер</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Проверки не сгорают</li>
+        </ul>
+        <a href="#cta" class="btn btn-primary" style="justify-content:center">Выбрать пакет</a>
+      </div>
+      <div class="price reveal">
+        <h3>Безлимит найма</h3>
+        <div class="desc">Для аутсорса и агентств с потоком кандидатов.</div>
+        <div><span class="amt">39 000</span> <span class="per">₽ / мес</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Безлимитные проверки</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Партнёрский бейдж для ваших кандидатов</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Выделенная линия поддержки</li>
+        </ul>
+        <a href="#cta" class="btn btn-ghost">Обсудить условия</a>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--muted-2);font-size:13.5px;margin-top:24px">Цены указаны для пилотного запуска и могут меняться. Для крупных объёмов — индивидуальные условия.</p>
+  </div>
+</section>
+
+<!-- TRUST / LEGAL -->
+<section class="pad" id="trust">
+  <div class="wrap">
+    <div class="trust-wrap reveal">
+      <div>
+        <span class="eyebrow">Доверие и закон</span>
+        <h2 style="font-size:clamp(26px,3.2vw,38px);font-weight:800;margin:18px 0 14px">Мы построены на прозрачности</h2>
+        <p style="color:var(--muted);font-size:16.5px">Верификация — про доверие. Поэтому мы честны в том, что делаем и чего не делаем. Никаких серых зон с персональными данными.</p>
+      </div>
+      <div class="trust-list">
+        <div class="trust-item">
+          <div class="ti"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l8 3v6c0 5-3.4 8.5-8 11-4.6-2.5-8-6-8-11V5l8-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+          <div><h4>Биометрию не храним</h4><p>Живая сессия используется для проверки в моменте. Сырое видео удаляется, на серверах — только текстовый отчёт.</p></div>
+        </div>
+        <div class="trust-item">
+          <div class="ti"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M4 5h16v14H4z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><h4>Согласие и 152-ФЗ</h4><p>Проверка начинается только после письменного согласия кандидата на обработку данных.</p></div>
+        </div>
+        <div class="trust-item">
+          <div class="ti"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5 8h14M5 16h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <div><h4>Честная зона ответственности</h4><p>Мы даём вероятностную оценку достоверности. Решение о найме остаётся за вами — и это прописано в оферте.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="pad" id="faq" style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Частые вопросы</span>
+      <h2>Коротко о главном</h2>
+    </div>
+    <div class="faq">
+      <details class="qa reveal"><summary>Это законно? Вы же работаете с данными кандидатов<span class="plus"></span></summary><div class="a">Да. Проверка проводится только с письменного согласия кандидата на обработку персональных данных. Мы не храним биометрию: живое видео используется для верификации в моменте и затем удаляется — на серверах остаётся только итоговый текстовый отчёт. Это снимает основные риски по 152-ФЗ.</div></details>
+      <details class="qa reveal"><summary>Как вы отличаете дипфейк от реального человека?<span class="plus"></span></summary><div class="a">На живой сессии оператор просит кандидата выполнить набор действий (повороты головы, реакция на неожиданные вопросы, показ документа под углом), которые современные real-time дипфейки воспроизводят с артефактами. По мере роста мы усиливаем это автоматическим ИИ-анализом микродвижений.</div></details>
+      <details class="qa reveal"><summary>Сколько занимает проверка?<span class="plus"></span></summary><div class="a">Живая сессия — 5–10 минут для кандидата. Полный отчёт с подтверждением опыта готов в течение 24 часов после того, как кандидат прошёл верификацию и дал контакты для прозвона.</div></details>
+      <details class="qa reveal"><summary>Нужно ли что-то интегрировать в наши системы?<span class="plus"></span></summary><div class="a">Нет. Для старта ничего внедрять не нужно — вы отправляете заявку, получаете отчёт на почту. API и интеграция с вашей HRM-системой появятся на следующем этапе, для клиентов с большим потоком.</div></details>
+      <details class="qa reveal"><summary>Что если кандидат не прошёл проверку?<span class="plus"></span></summary><div class="a">Вы получаете отчёт с конкретными красными флагами: что именно не сошлось. Решение — за вами. Мы не «отбраковываем» людей, а даём вам факты для взвешенного решения.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="pad" id="cta">
+  <div class="wrap">
+    <div class="cta reveal">
+      <div class="orb-3"></div>
+      <h2>Проверьте первого кандидата бесплатно</h2>
+      <p>Пришлите одного кандидата, которого сейчас нанимаете — мы проверим его и покажем отчёт. Без обязательств.</p>
+      <div class="hero-cta">
+        <a href="mailto:hello@dostoverno.ru?subject=Бесплатная проверка кандидата" class="btn btn-primary">Запросить бесплатную проверку
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#05122a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="https://t.me/" class="btn btn-ghost">Написать в Telegram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="about">
+        <a href="#" class="logo">
+          <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12.5l2 2 4-4.5" stroke="#05122a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Достоверно
+        </a>
+        <p>Верификация личности и квалификации кандидатов для честного найма. Защита компаний от дипфейков и фейковых соискателей.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col"><h5>Продукт</h5><a href="#how">Как работает</a><a href="#report">Отчёт</a><a href="#pricing">Цены</a></div>
+        <div class="foot-col"><h5>Компания</h5><a href="#trust">Доверие и закон</a><a href="oferta.html">Договор-оферта</a><a href="privacy.html">Конфиденциальность</a></div>
+        <div class="foot-col"><h5>Контакты</h5><a href="mailto:hello@dostoverno.ru">hello@dostoverno.ru</a><a href="https://t.me/">Telegram</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Достоверно. Пилотный запуск.</span>
+      <span>Персональные данные обрабатываются в соответствии с 152-ФЗ.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// nav scroll state
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>20));
+
+// reveal on scroll
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// count up
+const fmt=n=>n.toLocaleString('ru-RU');
+const cio=new IntersectionObserver((es)=>{es.forEach(e=>{
+  if(!e.isIntersecting)return; cio.unobserve(e.target);
+  const el=e.target, target=+el.dataset.count, pre=el.dataset.prefix||'', suf=el.dataset.suffix||'';
+  let cur=0; const dur=1400, t0=performance.now();
+  const tick=(t)=>{const p=Math.min(1,(t-t0)/dur); const val=Math.round((1-Math.pow(1-p,3))*target); el.textContent=pre+fmt(val)+suf; if(p<1)requestAnimationFrame(tick);};
+  requestAnimationFrame(tick);
+})},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// burger (simple anchor scroll fallback)
+document.querySelector('.burger').addEventListener('click',()=>{document.getElementById('pricing').scrollIntoView({behavior:'smooth'})});
+</script>
+</body>
+</html>

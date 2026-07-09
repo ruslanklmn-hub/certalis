@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Заявка на проверку кандидата — Достоверно</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<style>
+:root{
+  --bg:#070b16;--bg-2:#0b1120;--panel:#0f1729;--panel-2:#131d33;
+  --line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.14);
+  --text:#eef2ff;--muted:#9aa8c7;--muted-2:#6b789a;
+  --cyan:#3fe0d0;--blue:#4f8bff;--violet:#8b7bff;--green:#37e59a;--red:#ff6b6b;
+  --grad:linear-gradient(120deg,var(--cyan),var(--blue) 55%,var(--violet));
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+h1,h2,.dsp{font-family:'Manrope','Inter',sans-serif;letter-spacing:-.02em}
+a{color:var(--cyan)}
+.wrap{max-width:640px;margin:0 auto;padding:0 22px}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(7,11,22,.85);backdrop-filter:blur(12px);z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:640px;margin:0 auto;padding:0 22px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Manrope';font-weight:800;font-size:18px;text-decoration:none;color:var(--text)}
+.logo-mark{width:30px;height:30px;border-radius:8px;background:var(--grad);display:grid;place-items:center}
+.logo-mark svg{width:17px;height:17px}
+.back{color:var(--muted);font-size:14px;text-decoration:none}
+.back:hover{color:var(--text)}
+
+.hero-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.4}
+.orb-1{width:460px;height:460px;background:radial-gradient(circle,#1c3d7a,transparent 70%);top:-160px;right:-120px}
+.orb-2{width:400px;height:400px;background:radial-gradient(circle,#2f6b64,transparent 70%);bottom:-180px;left:-140px;opacity:.3}
+
+main{position:relative;z-index:1;padding:46px 0 80px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);padding:6px 13px;border:1px solid var(--line-2);border-radius:100px;background:rgba(63,224,208,.06)}
+h1{font-size:clamp(27px,4.5vw,36px);font-weight:800;margin:18px 0 12px}
+.sub{color:var(--muted);font-size:16px;margin-bottom:30px}
+
+.card{background:linear-gradient(165deg,var(--panel),var(--bg-2));border:1px solid var(--line-2);border-radius:20px;padding:30px;box-shadow:0 30px 70px -30px rgba(0,0,0,.6)}
+.field{margin-bottom:18px}
+.field.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:block;font-size:13.5px;font-weight:600;margin-bottom:7px;color:var(--text)}
+label .req{color:var(--cyan)}
+.hint{font-size:12.5px;color:var(--muted-2);margin-top:5px}
+input,textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line-2);border-radius:11px;padding:12px 14px;color:var(--text);font-family:inherit;font-size:15px;transition:border-color .2s,background .2s}
+input::placeholder,textarea::placeholder{color:var(--muted-2)}
+input:focus,textarea:focus{outline:none;border-color:var(--cyan);background:rgba(63,224,208,.05)}
+textarea{resize:vertical;min-height:92px}
+.check{display:flex;gap:11px;align-items:flex-start;margin:6px 0 22px;font-size:13.5px;color:var(--muted)}
+.check input{width:auto;margin-top:3px;accent-color:var(--cyan);flex-shrink:0}
+.btn{width:100%;display:flex;align-items:center;justify-content:center;gap:9px;font-weight:700;font-size:16px;padding:15px;border-radius:12px;cursor:pointer;border:none;background:var(--grad);color:#05122a;transition:transform .2s,box-shadow .2s,opacity .2s;box-shadow:0 12px 30px -8px rgba(79,139,255,.5)}
+.btn:hover{transform:translateY(-2px)}
+.btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.err{color:var(--red);font-size:12.5px;margin-top:5px;display:none}
+.field.invalid input,.field.invalid textarea{border-color:var(--red)}
+.field.invalid .err{display:block}
+.formnote{font-size:12.5px;color:var(--muted-2);text-align:center;margin-top:16px;line-height:1.5}
+
+.steps{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:100px;padding:6px 12px}
+.chip svg{width:14px;height:14px;color:var(--green)}
+
+.success{display:none;text-align:center;padding:20px 10px}
+.success.on{display:block}
+.form-wrap.off{display:none}
+.s-ic{width:74px;height:74px;border-radius:50%;background:rgba(55,229,154,.12);border:1px solid rgba(55,229,154,.35);display:grid;place-items:center;margin:0 auto 22px}
+.s-ic svg{width:38px;height:38px;color:var(--green)}
+.success h2{font-size:26px;font-weight:800;margin-bottom:12px}
+.success p{color:var(--muted);font-size:15.5px;max-width:420px;margin:0 auto 8px}
+</style>
+</head>
+<body>
+<div class="hero-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+
+<header><div class="nav">
+  <a href="index.html" class="logo"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12.5l2 2 4-4.5" stroke="#05122a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Достоверно</a>
+  <a href="index.html" class="back">← На главную</a>
+</div></header>
+
+<main><div class="wrap">
+  <span class="eyebrow">● Заявка на проверку</span>
+  <h1>Проверим вашего кандидата</h1>
+  <p class="sub">Первая проверка — бесплатно. Заполните заявку, и мы свяжемся, чтобы согласовать время видео-встречи с кандидатом.</p>
+
+  <div class="steps">
+    <span class="chip"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ответим в течение дня</span>
+    <span class="chip"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Без записи видео · 152-ФЗ</span>
+  </div>
+
+  <div class="card">
+    <div class="form-wrap" id="formWrap">
+      <form id="reqForm" novalidate>
+        <div class="field row">
+          <div>
+            <label>Компания <span class="req">*</span></label>
+            <input type="text" name="Компания" placeholder="ООО «Пример»" required>
+            <div class="err">Укажите компанию</div>
+          </div>
+          <div>
+            <label>Ваше имя <span class="req">*</span></label>
+            <input type="text" name="Контактное лицо" placeholder="Как к вам обращаться" required>
+            <div class="err">Укажите имя</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Ваш email для отчёта <span class="req">*</span></label>
+          <input type="email" name="Email заказчика" placeholder="you@company.ru" required>
+          <div class="err">Введите корректный email</div>
+        </div>
+
+        <div class="field row">
+          <div>
+            <label>ФИО кандидата <span class="req">*</span></label>
+            <input type="text" name="ФИО кандидата" placeholder="Кого проверяем" required>
+            <div class="err">Укажите кандидата</div>
+          </div>
+          <div>
+            <label>Должность / роль</label>
+            <input type="text" name="Должность" placeholder="Напр. Backend-разработчик">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Контакт кандидата <span class="req">*</span></label>
+          <input type="text" name="Контакт кандидата" placeholder="Email или телефон — для приглашения на видео-встречу" required>
+          <div class="hint">Нужен, чтобы отправить кандидату ссылку на видео-проверку (Яндекс Телемост).</div>
+          <div class="err">Укажите контакт кандидата</div>
+        </div>
+
+        <div class="field">
+          <label>Что важно проверить / комментарий</label>
+          <textarea name="Комментарий" placeholder="Например: подтвердить личность и опыт работы в компании X, насторожило поведение на собеседовании…"></textarea>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" id="agree" required>
+          <span>Я ознакомлен(а) с <a href="oferta.html" target="_blank">офертой</a> и <a href="privacy.html" target="_blank">политикой конфиденциальности</a> и подтверждаю, что уведомлю кандидата о проверке.</span>
+        </label>
+
+        <button type="submit" class="btn" id="submitBtn">Отправить заявку
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#05122a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="err" id="formErr" style="text-align:center;margin-top:12px">Не удалось отправить. Напишите нам на <a href="mailto:ast.control@mail.ru">ast.control@mail.ru</a></div>
+        <p class="formnote">Отправляя заявку, вы соглашаетесь на обработку указанных данных для оказания услуги верификации.</p>
+      </form>
+    </div>
+
+    <div class="success" id="success">
+      <div class="s-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h2>Заявка отправлена</h2>
+      <p>Спасибо! Мы получили заявку и свяжемся с вами в течение рабочего дня по указанному email, чтобы согласовать время видео-проверки кандидата.</p>
+      <p style="margin-top:14px"><a href="index.html">← Вернуться на сайт</a></p>
+    </div>
+  </div>
+</div></main>
+
+<script>
+const form=document.getElementById('reqForm');
+const submitBtn=document.getElementById('submitBtn');
+const formErr=document.getElementById('formErr');
+
+// куда уходит заявка (FormSubmit — работает на статике, без бэкенда)
+const ENDPOINT="https://formsubmit.co/ajax/ast.control@mail.ru";
+
+function validate(){
+  let ok=true;
+  form.querySelectorAll('[required]').forEach(el=>{
+    const field=el.closest('.field');
+    if(el.type==='checkbox'){ if(!el.checked) ok=false; return; }
+    const val=el.value.trim();
+    let bad=!val;
+    if(el.type==='email' && val){ bad=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val); }
+    if(field){ field.classList.toggle('invalid',bad); }
+    if(bad) ok=false;
+  });
+  return ok;
+}
+
+form.querySelectorAll('input,textarea').forEach(el=>{
+  el.addEventListener('input',()=>{const f=el.closest('.field'); if(f) f.classList.remove('invalid'); formErr.style.display='none';});
+});
+
+form.addEventListener('submit',async (e)=>{
+  e.preventDefault();
+  formErr.style.display='none';
+  if(!validate()) return;
+  const data={};
+  new FormData(form).forEach((v,k)=>data[k]=v);
+  data._subject="Новая заявка на проверку кандидата — Достоверно";
+  data._template="table";
+
+  submitBtn.disabled=true; submitBtn.textContent="Отправляем…";
+  try{
+    const r=await fetch(ENDPOINT,{method:"POST",headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
+    if(!r.ok) throw new Error('http '+r.status);
+    document.getElementById('formWrap').classList.add('off');
+    document.getElementById('success').classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(err){
+    submitBtn.disabled=false; submitBtn.textContent="Отправить заявку";
+    formErr.style.display='block';
+  }
+});
+</script>
+</body>
+</html>

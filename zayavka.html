@@ -150,8 +150,8 @@ textarea{resize:vertical;min-height:92px}
 
     <div class="success" id="success">
       <div class="s-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <h2>Заявка отправлена</h2>
-      <p>Спасибо! Мы получили заявку и свяжемся с вами в течение рабочего дня по указанному email, чтобы согласовать время видео-проверки кандидата.</p>
+      <h2>Почти готово — отправьте письмо</h2>
+      <p>Мы открыли вашу почтовую программу с заполненной заявкой: нажмите «Отправить». Если она не открылась — напишите на <a href="mailto:ast.control@mail.ru">ast.control@mail.ru</a>. Свяжемся в течение рабочего дня, чтобы согласовать время видео-проверки кандидата.</p>
       <p style="margin-top:14px"><a href="index.html">← Вернуться на сайт</a></p>
     </div>
   </div>
@@ -162,8 +162,8 @@ const form=document.getElementById('reqForm');
 const submitBtn=document.getElementById('submitBtn');
 const formErr=document.getElementById('formErr');
 
-// куда уходит заявка (FormSubmit — работает на статике, без бэкенда)
-const ENDPOINT="https://formsubmit.co/ajax/ast.control@mail.ru";
+// заявка формируется письмом в почтовой программе пользователя (без сторонних сервисов) ( на статике, без бэкенда)
+
 
 function validate(){
   let ok=true;
@@ -192,17 +192,14 @@ form.addEventListener('submit',async (e)=>{
   data._subject="Новая заявка на проверку кандидата — Серталис";
   data._template="table";
 
-  submitBtn.disabled=true; submitBtn.textContent="Отправляем…";
-  try{
-    const r=await fetch(ENDPOINT,{method:"POST",headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
-    if(!r.ok) throw new Error('http '+r.status);
-    document.getElementById('formWrap').classList.add('off');
-    document.getElementById('success').classList.add('on');
-    window.scrollTo({top:0,behavior:'smooth'});
-  }catch(err){
-    submitBtn.disabled=false; submitBtn.textContent="Отправить заявку";
-    formErr.style.display='block';
-  }
+  delete data._subject; delete data._template;
+  const lines=Object.keys(data).map(function(k){return k+': '+data[k]}).join('\n');
+  window.location.href='mailto:ast.control@mail.ru?subject='
+    +encodeURIComponent('Серталис — заявка на проверку кандидата')
+    +'&body='+encodeURIComponent('Заявка с сайта certalis.ru\n\n'+lines);
+  document.getElementById('formWrap').classList.add('off');
+  document.getElementById('success').classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
 });
 </script>
 </body>

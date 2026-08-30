@@ -82,7 +82,7 @@ textarea{resize:vertical;min-height:92px}
 <main><div class="wrap">
   <span class="eyebrow">● Заявка на проверку</span>
   <h1>Проверим вашего кандидата</h1>
-  <p class="sub">Первая проверка — бесплатно. Заполните заявку, и мы свяжемся, чтобы согласовать время видео-встречи с кандидатом.</p>
+  <p class="sub">Первая проверка — бесплатно. Напишите нам на почту, и мы свяжемся, чтобы согласовать время видео-встречи с кандидатом.</p>
 
   <div class="steps">
     <span class="chip"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ответим в течение дня</span>
@@ -91,116 +91,25 @@ textarea{resize:vertical;min-height:92px}
 
   <div class="card">
     <div class="form-wrap" id="formWrap">
-      <form id="reqForm" novalidate>
-        <div class="field row">
-          <div>
-            <label>Компания <span class="req">*</span></label>
-            <input type="text" name="Компания" placeholder="ООО «Пример»" required>
-            <div class="err">Укажите компанию</div>
-          </div>
-          <div>
-            <label>Ваше имя <span class="req">*</span></label>
-            <input type="text" name="Контактное лицо" placeholder="Как к вам обращаться" required>
-            <div class="err">Укажите имя</div>
-          </div>
-        </div>
+      <h2 style="font-size:22px;margin-bottom:10px">Заявка — письмом на почту</h2>
+      <p style="line-height:1.6;margin-bottom:16px">Мы намеренно не собираем данные кандидатов через форму на сайте: персональные данные должны обрабатываться в защищённом контуре, а не проходить через сторонние сервисы. Поэтому заявку принимаем письмом.</p>
 
-        <div class="field">
-          <label>Ваш email для отчёта <span class="req">*</span></label>
-          <input type="email" name="Email заказчика" placeholder="you@company.ru" required>
-          <div class="err">Введите корректный email</div>
-        </div>
+      <p style="line-height:1.6;margin-bottom:8px"><b>Что указать в письме:</b></p>
+      <ul style="line-height:1.75;margin:0 0 20px 20px">
+        <li>Компанию и как к вам обращаться</li>
+        <li>Email для отчёта</li>
+        <li>Должность, на которую проверяем кандидата</li>
+        <li>Удобное время для видео-встречи</li>
+      </ul>
+      <p style="line-height:1.6;margin-bottom:20px">Данные самого кандидата на этом шаге не нужны — мы запросим их отдельно, когда вы подтвердите, что уведомили его о проверке.</p>
 
-        <div class="field row">
-          <div>
-            <label>ФИО кандидата <span class="req">*</span></label>
-            <input type="text" name="ФИО кандидата" placeholder="Кого проверяем" required>
-            <div class="err">Укажите кандидата</div>
-          </div>
-          <div>
-            <label>Должность / роль</label>
-            <input type="text" name="Должность" placeholder="Напр. Backend-разработчик">
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Контакт кандидата <span class="req">*</span></label>
-          <input type="text" name="Контакт кандидата" placeholder="Email или телефон — для приглашения на видео-встречу" required>
-          <div class="hint">Нужен, чтобы отправить кандидату ссылку на видео-проверку (Яндекс Телемост).</div>
-          <div class="err">Укажите контакт кандидата</div>
-        </div>
-
-        <div class="field">
-          <label>Что важно проверить / комментарий</label>
-          <textarea name="Комментарий" placeholder="Например: подтвердить личность и опыт работы в компании X, насторожило поведение на собеседовании…"></textarea>
-        </div>
-
-        <label class="check">
-          <input type="checkbox" id="agree" required>
-          <span>Я ознакомлен(а) с <a href="oferta.html" target="_blank">офертой</a> и <a href="privacy.html" target="_blank">политикой конфиденциальности</a> и подтверждаю, что уведомлю кандидата о проверке.</span>
-        </label>
-
-        <button type="submit" class="btn" id="submitBtn">Отправить заявку
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#05122a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="err" id="formErr" style="text-align:center;margin-top:12px">Не удалось отправить. Напишите нам на <a href="mailto:ast.control@mail.ru">ast.control@mail.ru</a></div>
-        <p class="formnote">Отправляя заявку, вы соглашаетесь на обработку указанных данных для оказания услуги верификации.</p>
-      </form>
-    </div>
-
-    <div class="success" id="success">
-      <div class="s-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <h2>Почти готово — отправьте письмо</h2>
-      <p>Мы открыли вашу почтовую программу с заполненной заявкой: нажмите «Отправить». Если она не открылась — напишите на <a href="mailto:ast.control@mail.ru">ast.control@mail.ru</a>. Свяжемся в течение рабочего дня, чтобы согласовать время видео-проверки кандидата.</p>
-      <p style="margin-top:14px"><a href="index.html">← Вернуться на сайт</a></p>
+      <a class="btn" href="mailto:ast.control@mail.ru?subject=%D0%97%D0%B0%D1%8F%D0%B2%D0%BA%D0%B0%20%D0%BD%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D1%83%20%D0%BA%D0%B0%D0%BD%D0%B4%D0%B8%D0%B4%D0%B0%D1%82%D0%B0&amp;body=%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F%3A%20%0A%D0%9A%D0%B0%D0%BA%20%D0%BA%20%D0%B2%D0%B0%D0%BC%20%D0%BE%D0%B1%D1%80%D0%B0%D1%89%D0%B0%D1%82%D1%8C%D1%81%D1%8F%3A%20%0AEmail%20%D0%B4%D0%BB%D1%8F%20%D0%BE%D1%82%D1%87%D1%91%D1%82%D0%B0%3A%20%0A%D0%94%D0%BE%D0%BB%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D1%8C%3A%20%0A%D0%A3%D0%B4%D0%BE%D0%B1%D0%BD%D0%BE%D0%B5%20%D0%B2%D1%80%D0%B5%D0%BC%D1%8F%3A%20">Написать письмо
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#05122a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <p class="formnote">Почта: <a href="mailto:ast.control@mail.ru">ast.control@mail.ru</a>. Условия — в <a href="oferta.html" target="_blank">оферте</a> и <a href="privacy.html" target="_blank">политике конфиденциальности</a>.</p>
     </div>
   </div>
 </div></main>
 
-<script>
-const form=document.getElementById('reqForm');
-const submitBtn=document.getElementById('submitBtn');
-const formErr=document.getElementById('formErr');
-
-// заявка формируется письмом в почтовой программе пользователя (без сторонних сервисов) ( на статике, без бэкенда)
-
-
-function validate(){
-  let ok=true;
-  form.querySelectorAll('[required]').forEach(el=>{
-    const field=el.closest('.field');
-    if(el.type==='checkbox'){ if(!el.checked) ok=false; return; }
-    const val=el.value.trim();
-    let bad=!val;
-    if(el.type==='email' && val){ bad=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val); }
-    if(field){ field.classList.toggle('invalid',bad); }
-    if(bad) ok=false;
-  });
-  return ok;
-}
-
-form.querySelectorAll('input,textarea').forEach(el=>{
-  el.addEventListener('input',()=>{const f=el.closest('.field'); if(f) f.classList.remove('invalid'); formErr.style.display='none';});
-});
-
-form.addEventListener('submit',async (e)=>{
-  e.preventDefault();
-  formErr.style.display='none';
-  if(!validate()) return;
-  const data={};
-  new FormData(form).forEach((v,k)=>data[k]=v);
-  data._subject="Новая заявка на проверку кандидата — Серталис";
-  data._template="table";
-
-  delete data._subject; delete data._template;
-  const lines=Object.keys(data).map(function(k){return k+': '+data[k]}).join('\n');
-  window.location.href='mailto:ast.control@mail.ru?subject='
-    +encodeURIComponent('Серталис — заявка на проверку кандидата')
-    +'&body='+encodeURIComponent('Заявка с сайта certalis.ru\n\n'+lines);
-  document.getElementById('formWrap').classList.add('off');
-  document.getElementById('success').classList.add('on');
-  window.scrollTo({top:0,behavior:'smooth'});
-});
-</script>
 </body>
 </html>

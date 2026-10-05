@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Сертификат верификации — Серталис</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 :root{
   --ink:#0f1729;--ink-2:#3a465e;--muted:#5c6b8a;--line:#e2e7f0;
@@ -172,11 +170,14 @@ body{font-family:'Inter',system-ui,Segoe UI,Roboto,sans-serif;background:#eef1f6
   </div>
 </div>
 
+<script src="js/qrcode.js"></script>
 <script>
 // Данные из параметров ссылки:
 // ?id=CS-2026-000123&fio=Иванов%20И.И.&role=...&issued=2026-07-10&until=2027-01-10&checks=identity,deepfake,experience&verdict=...
 const P=new URLSearchParams(location.search);
-const VERIFY_BASE = "certalis.ru/verify.html"; // адрес страницы проверки (QR ведёт сюда с ?id=)
+// адрес страницы проверки (QR ведёт сюда с ?id=) — берём с того же сайта, где открыт сертификат
+const VERIFY_URL = new URL("verify.html", location.href).href.split("?")[0];
+const VERIFY_BASE = VERIFY_URL.replace(/^https?:\/\//,"");
 
 const CHECK_LIB={
   identity:{t:"Личность подтверждена",s:"Визуальная сверка документа на видео-встрече",ok:true},
@@ -216,12 +217,13 @@ checks.forEach(k=>{
   wrap.appendChild(el);
 });
 
-// QR ведёт на страницу проверки с этим ID. Внешний генератор с деградацией в текст,
-// если недоступен (авторитетна всё равно связка ID + адрес проверки).
-const qrData=encodeURIComponent("https://"+VERIFY_BASE+"?id="+id);
+// QR ведёт на страницу проверки с этим ID. Рисуется прямо в браузере (js/qrcode.js, MIT) —
+// без внешних сервисов; если не вышло, показываем ID текстом.
 const qr=document.getElementById('qr');
-qr.onerror=()=>{ qr.style.display='none'; document.getElementById('qrFallback').style.display='grid'; };
-qr.src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=0&data="+qrData;
+try{
+  const q=qrcode(0,'M'); q.addData(VERIFY_URL+"?id="+encodeURIComponent(id)); q.make();
+  qr.src=q.createDataURL(6,0);
+}catch(e){ qr.style.display='none'; document.getElementById('qrFallback').style.display='grid'; }
 
 document.title=`Сертификат ${id} — Серталис`;
 </script>

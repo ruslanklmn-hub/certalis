@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Серталис — верификация кандидатов перед оффером</title>
 <meta name="description" content="Подтверждаем, что кандидат реальный, не подставной и не дипфейк, а его опыт — настоящий. Отчёт и бейдж «Проверен» за 24 часа. Первая проверка бесплатно.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"></noscript>
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 :root{
   --bg:#070b16;
@@ -544,7 +541,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;margin-top:96px}
     </div>
     <div class="faq">
       <details class="qa reveal"><summary>Это законно? Вы же работаете с данными кандидатов<span class="plus"></span></summary><div class="a">Да. Проверка проводится только с письменного согласия кандидата на обработку персональных данных. Мы не записываем видео и не собираем биометрию: оператор сверяет документ с лицом вживую в момент сессии, а на серверах остаётся только итоговый текстовый отчёт. Это снимает основные риски по 152-ФЗ.</div></details>
-      <details class="qa reveal"><summary>Как вы отличаете дипфейк от реального человека?<span class="plus"></span></summary><div class="a">На живой сессии оператор просит кандидата выполнить набор действий (повороты головы, реакция на неожиданные вопросы, показ документа под углом), которые современные real-time дипфейки воспроизводят с артефактами. Это человеческая проверка вживую — без записи видео. Автоматический ИИ-анализ добавим позже, отдельным этапом.</div></details>
+      <details class="qa reveal"><summary>Как вы отличаете дипфейк от реального человека?<span class="plus"></span></summary><div class="a">На живой сессии оператор просит кандидата выполнить набор действий (повороты головы, реакция на неожиданные вопросы, показ документа под углом), которые современные real-time дипфейки воспроизводят с артефактами. Это человеческая проверка вживую — без записи видео и без автоматического анализа лица и голоса.</div></details>
       <details class="qa reveal"><summary>Сколько занимает проверка?<span class="plus"></span></summary><div class="a">Живая сессия — 5–10 минут для кандидата. Полный отчёт с подтверждением опыта готов в течение 24 часов после того, как кандидат прошёл верификацию и дал контакты для прозвона.</div></details>
       <details class="qa reveal"><summary>Нужно ли что-то интегрировать в наши системы?<span class="plus"></span></summary><div class="a">Нет. Для старта ничего внедрять не нужно — вы отправляете заявку, получаете отчёт на почту. API и интеграция с вашей HRM-системой появятся на следующем этапе, для клиентов с большим потоком.</div></details>
       <details class="qa reveal"><summary>Что если кандидат не прошёл проверку?<span class="plus"></span></summary><div class="a">Вы получаете отчёт с конкретными красными флагами: что именно не сошлось. Решение — за вами. Мы не «отбраковываем» людей, а даём вам факты для взвешенного решения.</div></details>
